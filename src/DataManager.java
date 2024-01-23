@@ -1,10 +1,10 @@
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class DataManager {
@@ -120,10 +120,34 @@ public class DataManager {
         fileWriter.close();
     }
 
-    public int[][][] readFile() {
+    public List<ArrayList<Integer>> readFile(String inputFile) {
 
         // TODO: read the text file containing the arrays (1 array per line).
+        List<ArrayList<Integer>> dataList = new ArrayList<>();
 
-        return null;
+        try (BufferedReader reader = new BufferedReader(new FileReader(inputFile))) {
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                ArrayList<Integer> array = parseArray(line);
+                dataList.add(array);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return dataList;
+    }
+
+    // Helper method to parse a comma-separated string into an arraylist
+    private ArrayList<Integer> parseArray(String line) {
+        String[] values = line.split(", ");
+        ArrayList<Integer> array = new ArrayList<>();
+
+        for (String value : values) {
+            array.add(Integer.valueOf(value));
+        }
+
+        return array;
     }
 }
