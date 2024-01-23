@@ -1,4 +1,3 @@
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -28,12 +27,12 @@ public class DataManager {
 
         for (int sizeIndex = 0; sizeIndex < inputData.length; sizeIndex++) {
 
+            int[] elements = generateArray(dataSize, 0, 40000);
+
             for (int sortIndex = 0; sortIndex < inputData[0].length; sortIndex++) {
 
-                // TODO: Do we create a new array for each sort, or do we reuse them?
-                inputData[sizeIndex][sortIndex] = generateArray(dataSize, 0, 40000);
+                inputData[sizeIndex][sortIndex] = elements.clone();
             }
-
             Arrays.sort(inputData[sizeIndex][1]);
 
             // Reverse the array elements
