@@ -1,23 +1,18 @@
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Main {
 
-    // TODO: generate random arrays (store?), run algorithms with them, store results.
-
     public static void main(String[] args) {
 
         DataManager dataManager = new DataManager();
+        File file = new File("data/inputData.txt");
 
-        // Feel free to use smaller sizes temporarily to make the data easier to read.
-//        File file = new File("data/inputData.txt");
-//        int[][][] inputData = dataManager.generateData(4, 1, 1, file);
-//
-//        System.out.println(Arrays.deepToString(inputData));
-        String filePath = "data/inputData.txt";
-        List<ArrayList<Integer>> radixData = dataManager.readFile(filePath);
+        // You can use smaller values to make arrays easier to read!
+        dataManager.generateData(5, 1, 1, file);
+
+        List<ArrayList<Integer>> radixData = dataManager.readFile(file);
 
         // TODO: time sorting algorithm and out put to file.
         RadixSort sort = new RadixSort();
@@ -28,7 +23,7 @@ public class Main {
             System.out.println("Sorted: " + data);
         }
 
-        List<ArrayList<Integer>> insertionData = dataManager.readFile(filePath);
+        List<ArrayList<Integer>> insertionData = dataManager.readFile(file);
         InsertionSort insert = new InsertionSort();
         System.out.println("\nInsertionSort");
         for (ArrayList<Integer> data: insertionData) {
@@ -37,7 +32,7 @@ public class Main {
             System.out.println("Sorted: " + data);
         }
 
-        List<ArrayList<Integer>> mergeData = dataManager.readFile(filePath);
+        List<ArrayList<Integer>> mergeData = dataManager.readFile(file);
         MergeSort mergeSort = new MergeSort();
         System.out.println("\nMergeSort");
         for (ArrayList<Integer> data: mergeData) {
