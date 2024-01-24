@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
 public class MergeSort {
+
     public void mergeSort(ArrayList<Integer> array) {
         if (array.size() > 1) {
             int mid = array.size() / 2;
@@ -22,7 +23,7 @@ public class MergeSort {
 
         // comparing left and right
         while (leftIdx < left.size() && rightIdx < right.size()) {
-            if (left.get(leftIdx) <= right.get(rightIdx)) {
+            if (left.get(leftIdx) < right.get(rightIdx)) {
                 array.set(leftIdx, left.get(leftIdx));
                 leftIdx++;
             } else {
@@ -36,12 +37,14 @@ public class MergeSort {
         while (leftIdx < left.size()) {
             array.set(arrayInx, left.get(leftIdx));
             leftIdx++;
+            arrayInx++;
         }
 
         // copy remaining right
         while (rightIdx < right.size()) {
             array.set(arrayInx, right.get(rightIdx));
             rightIdx++;
+            arrayInx++;
         }
     }
 }
