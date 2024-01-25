@@ -1,4 +1,10 @@
+# Prevents the .idea (IntelliJ project settings) folder and .iml file from being committed.
 .idea
-# You might need to rename this line if the file is called something different.
+# You might need to rename this line if the .iml file is called something different.
 /SortingAlgorithmsExperiment.iml
+# Prevents the .class files from being committed.
 /out/
+# Just in case these files are still present, can be removed later.
+/data/radixTimeData.txt
+/data/insertionTimeData.txt
+/data/mergeTimeData.txt
