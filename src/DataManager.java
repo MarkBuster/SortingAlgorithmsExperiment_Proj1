@@ -1,4 +1,5 @@
 import java.io.*;
+
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,7 +11,7 @@ public class DataManager {
 
     File file;
 
-    public int[][][] generateData(int dataSize, int sizeMultiplier, int numberOfArrays, File inputFile) {
+    public void generateData(int dataSize, int sizeMultiplier, int numberOfArrays, File inputFile) {
 
         file = inputFile;
         // TODO: the following code block can be de-commented once file reading is complete.
@@ -26,12 +27,12 @@ public class DataManager {
 
         for (int sizeIndex = 0; sizeIndex < inputData.length; sizeIndex++) {
 
+            int[] elements = generateArray(dataSize, 0, 40000);
+
             for (int sortIndex = 0; sortIndex < inputData[0].length; sortIndex++) {
 
-                // TODO: Do we create a new array for each sort, or do we reuse them?
-                inputData[sizeIndex][sortIndex] = generateArray(dataSize, 0, 40000);
+                inputData[sizeIndex][sortIndex] = elements.clone();
             }
-
             Arrays.sort(inputData[sizeIndex][1]);
 
             // Reverse the array elements
@@ -52,7 +53,6 @@ public class DataManager {
         } catch (IOException ioException) {
             System.out.println("Could not write to file. Check if directory is correct.");
         }
-        return inputData;
     }
 
     public int[] generateArray(int arraySize, int minValue, int maxValue) {
@@ -119,34 +119,35 @@ public class DataManager {
         fileWriter.close();
     }
 
-    public List<ArrayList<Integer>> readFile(String inputFile) {
+    public List<ArrayList<Integer>> readFile(File inputFile) {
 
         // TODO: read the text file containing the arrays (1 array per line).
         List<ArrayList<Integer>> dataList = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(inputFile))) {
+
             String line;
 
             while ((line = reader.readLine()) != null) {
+
                 ArrayList<Integer> array = parseArray(line);
                 dataList.add(array);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
         return dataList;
     }
 
     // Helper method to parse a comma-separated string into an arraylist
     private ArrayList<Integer> parseArray(String line) {
+
         String[] values = line.split(", ");
         ArrayList<Integer> array = new ArrayList<>();
 
         for (String value : values) {
             array.add(Integer.valueOf(value));
         }
-
         return array;
     }
 }

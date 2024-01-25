@@ -2,23 +2,18 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Main {
 
-    // TODO: generate random arrays (store?), run algorithms with them, store results.
-
     public static void main(String[] args) {
 
         DataManager dataManager = new DataManager();
+        File file = new File("data/inputData.txt");
 
+        // You can use smaller values to make arrays easier to read!
+        dataManager.generateData(5, 1, 1, file);
 
-//         Feel free to use smaller sizes temporarily to make the data easier to read.
-//        File file = new File("data/inputData.txt");
-//        int[][][] inputData = dataManager.generateData(4, 1, 1, file);
-//
-//        System.out.println(Arrays.deepToString(inputData));
         String filePath = "data/inputData.txt";
 
         List<ArrayList<Integer>> radixData = dataManager.readFile(filePath);
@@ -79,6 +74,7 @@ public class Main {
             throw new RuntimeException(e);
         }
     }
+
 
     private static void insertionSort(List<ArrayList<Integer>> insertionSortData, String fileName) {
         InsertionSort insert = new InsertionSort();
