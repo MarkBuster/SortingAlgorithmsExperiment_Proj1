@@ -11,7 +11,7 @@ public class DataManager {
 
     File file;
 
-    public void generateData(int dataSize, int sizeMultiplier, int numberOfArrays, File inputFile) {
+    public int[][][] generateData(int dataSize, int sizeMultiplier, int numberOfArrays, File inputFile) {
 
         file = inputFile;
         // TODO: the following code block can be de-commented once file reading is complete.
@@ -49,10 +49,11 @@ public class DataManager {
             dataSize *= sizeMultiplier;
         }
         try {
-            writeFile(inputData);
+            writeDataFile(inputData);
         } catch (IOException ioException) {
             System.out.println("Could not write to file. Check if directory is correct.");
         }
+        return inputData;
     }
 
     public int[] generateArray(int arraySize, int minValue, int maxValue) {
@@ -100,7 +101,23 @@ public class DataManager {
         }
     }
 
-    public void writeFile(int[][][] inputData) throws IOException {
+    public void printData(int[][][] inputData) {
+
+        for (int[][] inputSize : inputData) {
+
+            for (int[] inputSort : inputSize) {
+
+                System.out.print(inputSort[0]);
+
+                for (int elementIndex = 1; elementIndex < inputSort.length; elementIndex++) {
+                    System.out.print(", " + inputSort[elementIndex]);
+                }
+                System.out.print("\n");
+            }
+        }
+    }
+
+    public void writeDataFile(int[][][] inputData) throws IOException {
 
         FileWriter fileWriter = new FileWriter(file, StandardCharsets.UTF_8);
 
@@ -110,8 +127,8 @@ public class DataManager {
 
                 fileWriter.write(String.valueOf(inputSort[0]));
 
-                for (int arrayIndex = 1; arrayIndex < inputData[0][0].length; arrayIndex++) {
-                    fileWriter.write(", " + inputSort[arrayIndex]);
+                for (int elementIndex = 1; elementIndex < inputSort.length; elementIndex++) {
+                    fileWriter.write(", " + inputSort[elementIndex]);
                 }
                 fileWriter.write("\n");
             }

@@ -1,102 +1,36 @@
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
 
         DataManager dataManager = new DataManager();
+        TimeManager timeManager = new TimeManager();
         File file = new File("data/inputData.txt");
 
-        // You can use smaller values to make arrays easier to read!
-        dataManager.generateData(5, 1, 1, file);
+        int[][][] arrayData = dataManager.generateData(4, 2, 14, file);
 
-        String filePath = "data/inputData.txt";
+        // You can use this to print the array data.
+        //dataManager.printData(arrayData);
 
-        List<ArrayList<Integer>> radixData = dataManager.readFile(filePath);
-        radixSort(radixData,"radixTimeData");
+        // TODO: do we need .clone() to avoid changing the original array, or am I overthinking it?
+        // TODO: having to make individual methods for every sorting algorithm feels repetitive,
+        //       unfortunately, I haven't been able to find a way to call methods in separate classes in a for loop, does someone else know?
 
-        List<ArrayList<Integer>> insertionData = dataManager.readFile(filePath);
-        insertionSort(insertionData,"insertionTimeData");
+        timeManager.writeRadixTime(arrayData.clone());
+        //timeManager.writeInsertionTime(arrayData.clone());
+        //timeManager.writeMergeTime(arrayData.clone());
 
-        List<ArrayList<Integer>> mergeData = dataManager.readFile(filePath);
-        mergeSort(mergeData,"mergeTimeData");
+        //timeManager.writeBubbleTime(arrayData.clone());
+        //timeManager.writeHeapTime(arrayData.clone());
+        //timeManager.writeBucketTime(arrayData.clone());
 
-    }
+        //timeManager.writeSelectionTime(arrayData.clone());
+        //timeManager.writeCountTime(arrayData.clone());
+        //timeManager.writeShellTime(arrayData.clone());
 
-    private static void mergeSort(List<ArrayList<Integer>> mergeSortData, String fileName) {
-        MergeSort mergeSort = new MergeSort();
-        System.out.println("MergeSort\n");
-        File timeFile = new File("data/"+fileName+".txt");
-
-        try (FileWriter writer = new FileWriter(timeFile)) {
-            for (ArrayList<Integer> data : mergeSortData) {
-                System.out.println(data);
-                writer.write(data.toString());
-
-                long start = System.nanoTime();
-                mergeSort.mergeSort(data);
-                long end = System.nanoTime();
-                long elapsedTime = end - start;
-
-                System.out.println("Sorted: " + data);
-                System.out.println("Time taken: " + elapsedTime + " ms\n");
-                writer.write("Time taken: " + elapsedTime + " ms\n");
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private static void radixSort(List<ArrayList<Integer>> radixSortData, String fileName) {
-        RadixSort sort = new RadixSort();
-        System.out.println("RadixSort\n");
-        File timeFile = new File("data/"+fileName+".txt");
-
-        try (FileWriter writer = new FileWriter(timeFile)) {
-            for (ArrayList<Integer> data : radixSortData) {
-                System.out.println(data);
-                writer.write(data.toString());
-
-                long start = System.nanoTime();
-                sort.radixSort(data);
-                long end = System.nanoTime();
-                long elapsedTime = end - start;
-
-                System.out.println("Sorted: " + data);
-                System.out.println("Time taken: " + elapsedTime + " ms\n");
-                writer.write("Time taken: " + elapsedTime + " ms\n");
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-
-    private static void insertionSort(List<ArrayList<Integer>> insertionSortData, String fileName) {
-        InsertionSort insert = new InsertionSort();
-        System.out.println("InsertionSort\n");
-        File timeFile = new File("data/"+fileName+".txt");
-
-        try (FileWriter writer = new FileWriter(timeFile)) {
-            for (ArrayList<Integer> data : insertionSortData) {
-                System.out.println(data);
-                writer.write(data.toString());
-
-                long start = System.nanoTime();
-                insert.insertionSort(data);
-                long end = System.nanoTime();
-                long elapsedTime = end - start;
-
-                System.out.println("Sorted: " + data);
-                System.out.println("Time taken: " + elapsedTime + " ms\n");
-                writer.write("Time taken: " + elapsedTime + " ms\n");
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        //timeManager.writeQuickRandomTime(arrayData.clone());
+        //timeManager.writeQuickFirstTime(arrayData.clone());
+        //timeManager.writeQuickMedianTime(arrayData.clone());
     }
 }
