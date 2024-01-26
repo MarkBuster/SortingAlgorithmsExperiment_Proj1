@@ -10,28 +10,103 @@ public class TimeManager {
 
         // TODO: add methods for timing the other sorting algorithms.
 
-        // Niki
-        writeRadixTime(input.clone());
-        //writeInsertionTime(input.clone());
-        //writeMergeTime(input.clone());
+        // Aaron
+        writeQuickFirstTime(input.clone());
+        writeQuickMedianTime(input.clone());
+        writeQuickRandomTime(input.clone());
 
         // Mark
         //writeBubbleTime(input.clone());
-        //writeHeapTime(input.clone());
         //writeBucketTime(input.clone());
+        //writeHeapTime(input.clone());
+
+        // Niki
+        //writeMergeTime(input.clone());
+        //writeInsertionTime(input.clone());
+        writeRadixTime(input.clone());
 
         // Ken
         //writeSelectionTime(input.clone());
-        //writeCountTime(input.clone());
         //writeShellTime(input.clone());
-
-        // Aaron
-        //writeQuickRandomTime(input.clone());
-        //writeQuickFirstTime(input.clone());
-        //writeQuickMedianTime(input.clone());
+        //writeCountTime(input.clone());
     }
 
     // TODO: Use this as a template for the other sorting timers!
+    public void writeQuickFirstTime(int[][][] input) {
+
+        File timeFile = new File("data/quickFirstTime.txt");
+        QuickSortFirst quickSortFirst = new QuickSortFirst();
+
+        try (FileWriter writer = new FileWriter(timeFile)) {
+
+            for (int[][] arrays : input) {
+
+                for (int[] array : arrays) {
+
+                    long startTime = System.nanoTime();
+                    quickSortFirst.quickSort(array);
+                    long endTime = System.nanoTime();
+
+                    writer.write(endTime - startTime + ",");
+                }
+                writer.write("\n");
+            }
+        } catch (IOException ioException) {
+
+            throw new RuntimeException(ioException);
+        }
+    }
+
+    public void writeQuickMedianTime(int[][][] input) {
+
+        File timeFile = new File("data/quickMedianTime.txt");
+        QuickSortMedian quickSortMedian = new QuickSortMedian();
+
+        try (FileWriter writer = new FileWriter(timeFile)) {
+
+            for (int[][] arrays : input) {
+
+                for (int[] array : arrays) {
+
+                    long startTime = System.nanoTime();
+                    quickSortMedian.quickSort(array);
+                    long endTime = System.nanoTime();
+
+                    writer.write(endTime - startTime + ",");
+                }
+                writer.write("\n");
+            }
+        } catch (IOException ioException) {
+
+            throw new RuntimeException(ioException);
+        }
+    }
+
+    public void writeQuickRandomTime(int[][][] input) {
+
+        File timeFile = new File("data/quickRandomTime.txt");
+        QuickSortRandom quickSortRandom = new QuickSortRandom();
+
+        try (FileWriter writer = new FileWriter(timeFile)) {
+
+            for (int[][] arrays : input) {
+
+                for (int[] array : arrays) {
+
+                    long startTime = System.nanoTime();
+                    quickSortRandom.quickSort(array);
+                    long endTime = System.nanoTime();
+
+                    writer.write(endTime - startTime + ",");
+                }
+                writer.write("\n");
+            }
+        } catch (IOException ioException) {
+
+            throw new RuntimeException(ioException);
+        }
+    }
+
     public void writeRadixTime(int[][][] input) {
 
         File timeFile = new File("data/radixTime.txt");
