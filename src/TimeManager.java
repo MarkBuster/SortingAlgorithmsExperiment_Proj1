@@ -6,6 +6,31 @@ import java.util.List;
 
 public class TimeManager {
 
+    public void writeAllTimes(int[][][] input) {
+
+        // TODO: add methods for timing the other sorting algorithms.
+
+        // Niki
+        writeRadixTime(input.clone());
+        //writeInsertionTime(input.clone());
+        //writeMergeTime(input.clone());
+
+        // Mark
+        //writeBubbleTime(input.clone());
+        //writeHeapTime(input.clone());
+        //writeBucketTime(input.clone());
+
+        // Ken
+        //writeSelectionTime(input.clone());
+        //writeCountTime(input.clone());
+        //writeShellTime(input.clone());
+
+        // Aaron
+        //writeQuickRandomTime(input.clone());
+        //writeQuickFirstTime(input.clone());
+        //writeQuickMedianTime(input.clone());
+    }
+
     // TODO: Use this as a template for the other sorting timers!
     public void writeRadixTime(int[][][] input) {
 
