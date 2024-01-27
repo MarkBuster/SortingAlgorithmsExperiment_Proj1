@@ -1,28 +1,19 @@
 import java.io.*;
-
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class DataManager {
 
-    File file;
-
     public int[][][] generateData(int dataSize, int sizeMultiplier, int numberOfArrays, File inputFile) {
 
-        file = inputFile;
-        // TODO: the following code block can be de-commented once file reading is complete.
-        //if (file.isFile() && !file.isDirectory()) {
-        //    return readFile();
-        //}
+        if (inputFile.isFile() && !inputFile.isDirectory()) {
+            // TODO: handle broken file
+            return readFile(inputFile, numberOfArrays);
+        }
 
-        // 3D-array:
-        // top-level lists array sizes (4, 8, 16, etc.),
-        // middle-level lists sorting order (random, reverse, partial, etc.),
-        // bottom-level lists the arrays themselves (to be inputted into the sorting methods).
         int[][][] inputData = new int[numberOfArrays][5][];
 
         for (int sizeIndex = 0; sizeIndex < inputData.length; sizeIndex++) {
@@ -49,7 +40,7 @@ public class DataManager {
             dataSize *= sizeMultiplier;
         }
         try {
-            writeDataFile(inputData);
+            writeDataFile(inputData, inputFile);
         } catch (IOException ioException) {
             System.out.println("Could not write to file. Check if directory is correct.");
         }
@@ -107,28 +98,24 @@ public class DataManager {
 
             for (int[] inputSort : inputSize) {
 
-                System.out.print(inputSort[0]);
-
-                for (int elementIndex = 1; elementIndex < inputSort.length; elementIndex++) {
-                    System.out.print(", " + inputSort[elementIndex]);
+                for (int element : inputSort) {
+                    System.out.print(element + ",");
                 }
                 System.out.print("\n");
             }
         }
     }
 
-    public void writeDataFile(int[][][] inputData) throws IOException {
+    public void writeDataFile(int[][][] inputData, File inputFile) throws IOException {
 
-        FileWriter fileWriter = new FileWriter(file, StandardCharsets.UTF_8);
+        FileWriter fileWriter = new FileWriter(inputFile, StandardCharsets.UTF_8);
 
         for (int[][] inputSize : inputData) {
 
             for (int[] inputSort : inputSize) {
 
-                fileWriter.write(String.valueOf(inputSort[0]));
-
-                for (int elementIndex = 1; elementIndex < inputSort.length; elementIndex++) {
-                    fileWriter.write(", " + inputSort[elementIndex]);
+                for (int element : inputSort) {
+                    fileWriter.write(element + ",");
                 }
                 fileWriter.write("\n");
             }
@@ -136,35 +123,29 @@ public class DataManager {
         fileWriter.close();
     }
 
-    public List<ArrayList<Integer>> readFile(File inputFile) {
+    public int[][][] readFile(File inputFile, int numberOfArrays) {
 
-        // TODO: read the text file containing the arrays (1 array per line).
-        List<ArrayList<Integer>> dataList = new ArrayList<>();
+        int[][][] arrayData = new int[numberOfArrays][5][];
 
         try (BufferedReader reader = new BufferedReader(new FileReader(inputFile))) {
 
             String line;
+            int arrayNumberIndex = 0;
+            int arraySortIndex = 0;
 
             while ((line = reader.readLine()) != null) {
 
-                ArrayList<Integer> array = parseArray(line);
-                dataList.add(array);
+                if (arraySortIndex > 4) {
+                    arraySortIndex = 0;
+                    arrayNumberIndex++;
+                }
+                String[] array = line.split(",");
+                arrayData[arrayNumberIndex][arraySortIndex] = Arrays.stream(array).mapToInt(Integer::parseInt).toArray();
+                arraySortIndex++;
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return dataList;
-    }
-
-    // Helper method to parse a comma-separated string into an arraylist
-    private ArrayList<Integer> parseArray(String line) {
-
-        String[] values = line.split(", ");
-        ArrayList<Integer> array = new ArrayList<>();
-
-        for (String value : values) {
-            array.add(Integer.valueOf(value));
-        }
-        return array;
+        return arrayData;
     }
 }

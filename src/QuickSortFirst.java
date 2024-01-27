@@ -26,13 +26,20 @@ public class QuickSortFirst {
 
     private void quickSort(int[] input, int start, int end) {
 
-        if (start < end) {
+            while (end - start > 0) {
 
-            int partitionIndex = partition(input, start, end);
+                int partition = partition(input, start, end);
 
-            quickSort(input, start, partitionIndex - 1);
-            quickSort(input, partitionIndex + 1, end);
-        }
+                if ((partition - start) <= (end - partition)) {
+
+                    quickSort(input, start, partition - 1);
+                    start = partition + 1;
+                } else {
+
+                    quickSort(input, partition + 1, end);
+                    end = partition - 1;
+                }
+            }
     }
 
     public void quickSort(int[] input) {

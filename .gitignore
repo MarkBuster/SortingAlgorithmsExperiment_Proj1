@@ -8,3 +8,5 @@
 /data/radixTimeData.txt
 /data/insertionTimeData.txt
 /data/mergeTimeData.txt
+# Prevents desktop.ini from being included (they are for desktop viewing options).
+**/desktop.ini*
