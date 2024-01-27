@@ -10,6 +10,7 @@ public class DataManager {
     public int[][][] generateData(int dataSize, int sizeMultiplier, int numberOfArrays, File inputFile) {
 
         if (inputFile.isFile() && !inputFile.isDirectory()) {
+            // TODO: handle broken file
             return readFile(inputFile, numberOfArrays);
         }
 

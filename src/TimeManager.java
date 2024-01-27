@@ -1,9 +1,6 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class TimeManager {
 
@@ -17,13 +14,13 @@ public class TimeManager {
         writeQuickRandomTime(input.clone());
 
         // Mark
-        //writeBubbleTime(input.clone());
-        //writeBucketTime(input.clone());
+        writeBubbleTime(input.clone());
+        writeBucketTime(input.clone());
         //writeHeapTime(input.clone());
 
         // Niki
-        //writeMergeTime(input.clone());
-        //writeInsertionTime(input.clone());
+        writeMergeTime(input.clone());
+        writeInsertionTime(input.clone());
         writeRadixTime(input.clone());
 
         // Ken
@@ -108,6 +105,56 @@ public class TimeManager {
         }
     }
 
+    private void writeMergeTime(int[][][] input) {
+
+        File timeFile = new File("data/mergeTime.txt");
+        MergeSort mergeSort = new MergeSort();
+
+        try (FileWriter writer = new FileWriter(timeFile)) {
+
+            for (int[][] arrays : input) {
+
+                for (int[] array : arrays) {
+
+                    long startTime = System.nanoTime();
+                    mergeSort.mergeSort(array);
+                    long endTime = System.nanoTime();
+
+                    writer.write(endTime - startTime + ",");
+                }
+                writer.write("\n");
+            }
+        } catch (IOException ioException) {
+
+            throw new RuntimeException(ioException);
+        }
+    }
+
+    private void writeInsertionTime(int[][][] input) {
+
+        File timeFile = new File("data/insertionTime.txt");
+        InsertionSort insertionSort = new InsertionSort();
+
+        try (FileWriter writer = new FileWriter(timeFile)) {
+
+            for (int[][] arrays : input) {
+
+                for (int[] array : arrays) {
+
+                    long startTime = System.nanoTime();
+                    insertionSort.insertionSort(array);
+                    long endTime = System.nanoTime();
+
+                    writer.write(endTime - startTime + ",");
+                }
+                writer.write("\n");
+            }
+        } catch (IOException ioException) {
+
+            throw new RuntimeException(ioException);
+        }
+    }
+
     public void writeRadixTime(int[][][] input) {
 
         File timeFile = new File("data/radixTime.txt");
@@ -133,54 +180,53 @@ public class TimeManager {
         }
     }
 
-    // TODO: convert merge and insertion sort to use array instead of ArrayList.
-    private static void writeMergeTime(int[][][] mergeSortData) {
+    public void writeBubbleTime(int[][][] input) {
 
-        MergeSort mergeSort = new MergeSort();
-        File timeFile = new File("data/"+ "mergeTimeData" +".txt");
+        File timeFile = new File("data/bubbleTime.txt");
+        BubbleSort bubbleSort = new BubbleSort();
 
         try (FileWriter writer = new FileWriter(timeFile)) {
 
-            for (int[][] arrays : mergeSortData) {
+            for (int[][] arrays : input) {
+
                 for (int[] array : arrays) {
 
+                    long startTime = System.nanoTime();
+                    bubbleSort.bubbleSort(array);
+                    long endTime = System.nanoTime();
 
-                    long start = System.nanoTime();
-                    mergeSort.mergeSort(array);
-                    long end = System.nanoTime();
-                    long elapsedTime = end - start;
-
-                    writer.write(elapsedTime + ",");
+                    writer.write(endTime - startTime + ",");
                 }
                 writer.write("\n");
             }
         } catch (IOException ioException) {
+
             throw new RuntimeException(ioException);
         }
     }
 
-    private static void writeInsertionTime(int[][][] insertionSortData) {
+    public void writeBucketTime(int[][][] input) {
 
-        InsertionSort insert = new InsertionSort();
-        File timeFile = new File("data/"+ "insertionTimeData" +".txt");
+        File timeFile = new File("data/bucketTime.txt");
+        BucketSort bucketSort = new BucketSort();
 
         try (FileWriter writer = new FileWriter(timeFile)) {
 
-            for (int[][] arrays : insertionSortData) {
+            for (int[][] arrays : input) {
 
                 for (int[] array : arrays) {
 
-                    long start = System.nanoTime();
-                    insert.insertionSort(array);
-                    long end = System.nanoTime();
-                    long elapsedTime = end - start;
+                    long startTime = System.nanoTime();
+                    bucketSort.bucketSort(array);
+                    long endTime = System.nanoTime();
 
-                    writer.write(elapsedTime + ",");
+                    writer.write(endTime - startTime + ",");
                 }
                 writer.write("\n");
             }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (IOException ioException) {
+
+            throw new RuntimeException(ioException);
         }
     }
 }

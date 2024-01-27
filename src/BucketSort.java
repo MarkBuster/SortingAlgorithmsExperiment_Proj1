@@ -1,71 +1,43 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class BucketSort {
-    int array[];
 
-    public BucketSort(int array[]){
-        this.array = array;
-    }
+    public void bucketSort(int[] array) {
 
-    public void printArray() {
-        for (int i = 0; i<array.length; i++){
-            System.out.print(array[i] + " ");
-        }
-        System.out.println();
-    }
-
-    //Print Buckets
-    public void printBucket(ArrayList<Integer>[] buckets) {
-        for (int i = 0; i < buckets.length; i++){
-            System.out.println("\nBucket#" + i + ":");
-            for (int j = 0; j < buckets[i].size(); j++) {
-                System.out.print(buckets[i].get(j) + " ");
-            }
-        }
-        System.out.println();
-    }
-
-    // BucketSorting
-    public void bucketSort() {
-        int numberOfBuckets = array.length;//(int) Math.ceil(Math.sqrt(array.length));// shrinks the bucket count
+        int numberOfBuckets = array.length;
         int maxValue = Integer.MIN_VALUE;
+
+        // Find the max value.
         for (int value : array) {
+
             if (value > maxValue) {
                 maxValue = value;
             }
         }
-        ArrayList<Integer> [] buckets = new ArrayList[numberOfBuckets];
-        for (int i = 0; i < buckets.length; i++) {
-            buckets[i] = new ArrayList<Integer>();
+        // Create a 2D List and initialize the contents.
+        List<List<Integer>> buckets = new ArrayList<>(numberOfBuckets);
+        for (int i = 0; i < numberOfBuckets; i++) {
+            buckets.add(new ArrayList<>());
         }
-
+        // Add values to the bucket.
         for (int value : array) {
-            int bucketNumber = (int) Math.ceil(((float)value * numberOfBuckets)/(float) maxValue);
-            buckets[bucketNumber - 1].add(value);
+            int bucketIndex = (int)((double) value / maxValue * (numberOfBuckets - 1));
+            buckets.get(bucketIndex).add(value);
         }
-
-        System.out.println("\n\nPrinting buckets before sorting...");
-            printBucket(buckets);
-
-        for (ArrayList<Integer> bucket : buckets) {
+        // Sort the values in each bucket.
+        for (List<Integer> bucket : buckets) {
             Collections.sort(bucket);
         }
-
-        System.out.println("\n\nPrinting buckets after sorting...");
-        printBucket(buckets);
-
+        // Assign the sorted values to the original array.
         int index = 0;
-        for(ArrayList<Integer> bucket: buckets){
-            for(int value : bucket){
+        for (List<Integer> bucket : buckets){
+
+            for (int value : bucket){
                 array[index] = value;
                 index++;
             }
         }
-
-
     }
-
-
-
 }
