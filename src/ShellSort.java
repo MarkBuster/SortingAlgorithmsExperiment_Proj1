@@ -1,18 +1,21 @@
-
-import java.util.ArrayList;
-
 public class ShellSort {
 
-    public void shellSort(ArrayList<Integer> arr) {
-        int n = arr.size();
+    public void shellSort(int[] array) {
+        
+        int n = array.length;
 
         for (int gap = n / 2; gap > 0; gap /= 2) {
+            
             for (int i = gap; i < n; i += 1) {
-                int temp = arr.get(i);
+                
+                int temp = array[i];
                 int j;
-                for (j = i; j >= gap && arr.get(j - gap) > temp; j -= gap)
-                    arr.set(j, arr.get(j - gap));
-                arr.set(j, temp);
+                
+                for (j = i; j >= gap && array[j - gap] > temp; j -= gap) {
+
+                    array[j] = array[j - gap];
+                }
+                array[j] = temp;
             }
         }
     }

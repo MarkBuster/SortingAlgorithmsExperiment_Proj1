@@ -1,5 +1,7 @@
 public class HeapSort {
-    public void heapSort(int array[]) {
+
+    public void heapSort(int[] array) {
+
         int length = array.length;
 
         // Build max heap
@@ -19,7 +21,8 @@ public class HeapSort {
         }// end for i
     }// end heapSort()
 
-    void heapify(int array[], int length, int index) {
+    void heapify(int[] array, int length, int index) {
+
         int largest = index;
         int left = 2 * index + 1;
         int right = 2 * index + 2;

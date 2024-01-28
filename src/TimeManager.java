@@ -6,8 +6,6 @@ public class TimeManager {
 
     public void writeAllTimes(int[][][] input) {
 
-        // TODO: add methods for timing the other sorting algorithms.
-
         // Aaron
         writeQuickFirstTime(input.clone());
         writeQuickMedianTime(input.clone());
@@ -16,7 +14,7 @@ public class TimeManager {
         // Mark
         writeBubbleTime(input.clone());
         writeBucketTime(input.clone());
-        //writeHeapTime(input.clone());
+        writeHeapTime(input.clone());
 
         // Niki
         writeMergeTime(input.clone());
@@ -24,12 +22,11 @@ public class TimeManager {
         writeRadixTime(input.clone());
 
         // Ken
-        //writeSelectionTime(input.clone());
-        //writeShellTime(input.clone());
-        //writeCountTime(input.clone());
+        writeSelectionTime(input.clone());
+        writeShellTime(input.clone());
+        writeCountingTime(input.clone());
     }
 
-    // TODO: Use this as a template for the other sorting timers!
     public void writeQuickFirstTime(int[][][] input) {
 
         File timeFile = new File("data/quickFirstTime.txt");
@@ -44,8 +41,9 @@ public class TimeManager {
                     long startTime = System.nanoTime();
                     quickSortFirst.quickSort(array);
                     long endTime = System.nanoTime();
+                    double totalTime = (endTime - startTime) / 1000.0;
 
-                    writer.write(endTime - startTime + ",");
+                    writer.write(totalTime + ",");
                 }
                 writer.write("\n");
             }
@@ -69,8 +67,9 @@ public class TimeManager {
                     long startTime = System.nanoTime();
                     quickSortMedian.quickSort(array);
                     long endTime = System.nanoTime();
+                    double totalTime = (endTime - startTime) / 1000.0;
 
-                    writer.write(endTime - startTime + ",");
+                    writer.write(totalTime + ",");
                 }
                 writer.write("\n");
             }
@@ -94,8 +93,9 @@ public class TimeManager {
                     long startTime = System.nanoTime();
                     quickSortRandom.quickSort(array);
                     long endTime = System.nanoTime();
+                    double totalTime = (endTime - startTime) / 1000.0;
 
-                    writer.write(endTime - startTime + ",");
+                    writer.write(totalTime + ",");
                 }
                 writer.write("\n");
             }
@@ -119,8 +119,9 @@ public class TimeManager {
                     long startTime = System.nanoTime();
                     mergeSort.mergeSort(array);
                     long endTime = System.nanoTime();
+                    double totalTime = (endTime - startTime) / 1000.0;
 
-                    writer.write(endTime - startTime + ",");
+                    writer.write(totalTime + ",");
                 }
                 writer.write("\n");
             }
@@ -144,8 +145,9 @@ public class TimeManager {
                     long startTime = System.nanoTime();
                     insertionSort.insertionSort(array);
                     long endTime = System.nanoTime();
+                    double totalTime = (endTime - startTime) / 1000.0;
 
-                    writer.write(endTime - startTime + ",");
+                    writer.write(totalTime + ",");
                 }
                 writer.write("\n");
             }
@@ -169,8 +171,9 @@ public class TimeManager {
                     long startTime = System.nanoTime();
                     radixSort.radixSort(array);
                     long endTime = System.nanoTime();
+                    double totalTime = (endTime - startTime) / 1000.0;
 
-                    writer.write(endTime - startTime + ",");
+                    writer.write(totalTime + ",");
                 }
                 writer.write("\n");
             }
@@ -194,8 +197,9 @@ public class TimeManager {
                     long startTime = System.nanoTime();
                     bubbleSort.bubbleSort(array);
                     long endTime = System.nanoTime();
+                    double totalTime = (endTime - startTime) / 1000.0;
 
-                    writer.write(endTime - startTime + ",");
+                    writer.write(totalTime + ",");
                 }
                 writer.write("\n");
             }
@@ -219,8 +223,113 @@ public class TimeManager {
                     long startTime = System.nanoTime();
                     bucketSort.bucketSort(array);
                     long endTime = System.nanoTime();
+                    double totalTime = (endTime - startTime) / 1000.0;
 
-                    writer.write(endTime - startTime + ",");
+                    writer.write(totalTime + ",");
+                }
+                writer.write("\n");
+            }
+        } catch (IOException ioException) {
+
+            throw new RuntimeException(ioException);
+        }
+    }
+
+    public void writeHeapTime(int[][][] input) {
+
+        File timeFile = new File("data/heapTime.txt");
+        HeapSort heapSort = new HeapSort();
+
+        try (FileWriter writer = new FileWriter(timeFile)) {
+
+            for (int[][] arrays : input) {
+
+                for (int[] array : arrays) {
+
+                    long startTime = System.nanoTime();
+                    heapSort.heapSort(array);
+                    long endTime = System.nanoTime();
+                    double totalTime = (endTime - startTime) / 1000.0;
+
+                    writer.write(totalTime + ",");
+                }
+                writer.write("\n");
+            }
+        } catch (IOException ioException) {
+
+            throw new RuntimeException(ioException);
+        }
+    }
+
+    public void writeCountingTime(int[][][] input) {
+
+        File timeFile = new File("data/countingTime.txt");
+        CountingSort countingSort = new CountingSort();
+
+        try (FileWriter writer = new FileWriter(timeFile)) {
+
+            for (int[][] arrays : input) {
+
+                for (int[] array : arrays) {
+
+                    long startTime = System.nanoTime();
+                    countingSort.countingSort(array);
+                    long endTime = System.nanoTime();
+                    double totalTime = (endTime - startTime) / 1000.0;
+
+                    writer.write(totalTime + ",");
+                }
+                writer.write("\n");
+            }
+        } catch (IOException ioException) {
+
+            throw new RuntimeException(ioException);
+        }
+    }
+
+    public void writeShellTime(int[][][] input) {
+
+        File timeFile = new File("data/shellTime.txt");
+        ShellSort shellSort = new ShellSort();
+
+        try (FileWriter writer = new FileWriter(timeFile)) {
+
+            for (int[][] arrays : input) {
+
+                for (int[] array : arrays) {
+
+                    long startTime = System.nanoTime();
+                    shellSort.shellSort(array);
+                    long endTime = System.nanoTime();
+                    double totalTime = (endTime - startTime) / 1000.0;
+
+                    writer.write(totalTime + ",");
+                }
+                writer.write("\n");
+            }
+        } catch (IOException ioException) {
+
+            throw new RuntimeException(ioException);
+        }
+    }
+
+    public void writeSelectionTime(int[][][] input) {
+
+        File timeFile = new File("data/selectionTime.txt");
+        SelectionSort selectionSort = new SelectionSort();
+
+        try (FileWriter writer = new FileWriter(timeFile)) {
+
+            for (int[][] arrays : input) {
+
+                for (int[] array : arrays) {
+
+                    long startTime = System.nanoTime();
+                    selectionSort.selectionSort(array);
+                    long endTime = System.nanoTime();
+                    double totalTime = (endTime - startTime) / 1000.0;
+
+                    writer.write(totalTime + ",");
                 }
                 writer.write("\n");
             }

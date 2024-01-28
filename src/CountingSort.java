@@ -1,21 +1,25 @@
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 
 public class CountingSort {
 
-    public void countingSort(ArrayList<Integer> arr) {
-        if (arr.size() == 0) {
+    public void countingSort(int[] array) {
+        
+        if (array.length == 0) {
             return;
         }
-        int max = Collections.max(arr);
+        int max = Arrays.stream(array).max().getAsInt();
         int[] count = new int[max + 1];
-        for (int number : arr) {
+        
+        for (int number : array) {
             count[number]++;
         }
-        int arrIndex = 0;
+        int arrayIndex = 0;
+        
         for (int i = 0; i < count.length; i++) {
+            
             while (count[i] > 0) {
-                arr.set(arrIndex++, i);
+                
+                array[arrayIndex++] = i;
                 count[i]--;
             }
         }
