@@ -52,7 +52,7 @@ public class DataManager {
         int[] output = new int[arraySize];
 
         for (int index = 0; index < arraySize; index++) {
-            output[index] = ThreadLocalRandom.current().nextInt((maxValue - minValue) + 1) + minValue;
+            output[index] = ThreadLocalRandom.current().nextInt(minValue, maxValue);
         }
 
         return output;
@@ -74,8 +74,8 @@ public class DataManager {
         // Arraylist containing values to be sorted.
         ArrayList<Integer> sorted = new ArrayList<>();
 
-        if (length > sortedLength + 1) {
-            indexes.subList(sortedLength + 1, length).clear();
+        if (length > sortedLength) {
+            indexes.subList(sortedLength, length).clear();
         }
 
         // Add the values using the unique random indexes.
