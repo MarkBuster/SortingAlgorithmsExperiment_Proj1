@@ -92,17 +92,33 @@ public class DataManager {
         }
     }
 
-    public void printData(int[][][] inputData) {
+    public void printData(int[][][] inputData, int dataLength) {
 
-        for (int[][] inputSize : inputData) {
+        int currentDataLength = dataLength;
 
-            for (int[] inputSort : inputSize) {
+        for (int[][] inputDatum : inputData) {
 
-                for (int element : inputSort) {
-                    System.out.print(element + ",");
+            System.out.println("Data size: " + inputDatum[0].length);
+
+            for (int sortIndex = 0; sortIndex < inputDatum.length; sortIndex++) {
+
+                switch (sortIndex) {
+
+                    case 0 -> System.out.print("Random sort: ");
+                    case 1 -> System.out.print("Reverse sort: ");
+                    case 2 -> System.out.print("Forward sort: ");
+                    case 3 -> System.out.print("Partial 50% sort: ");
+                    case 4 -> System.out.print("Partial 75% sort: ");
                 }
-                System.out.print("\n");
+                if (dataLength > inputDatum[sortIndex].length) {
+                    currentDataLength = inputDatum[sortIndex].length;
+                }
+                if (dataLength < inputDatum[sortIndex].length) {
+                    currentDataLength = dataLength;
+                }
+                System.out.println(Arrays.toString(Arrays.copyOf(inputDatum[sortIndex], currentDataLength)));
             }
+            System.out.println();
         }
     }
 
