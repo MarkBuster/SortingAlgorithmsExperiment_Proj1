@@ -34,6 +34,7 @@ public class QuickSortFirst {
 
                     quickSort(input, start, partition - 1);
                     start = partition + 1;
+
                 } else {
 
                     quickSort(input, partition + 1, end);
@@ -42,7 +43,10 @@ public class QuickSortFirst {
             }
     }
 
-    public void quickSort(int[] input) {
+    public int[] quickSort(int[] input) {
+
         quickSort(input, 0, input.length - 1);
+
+        return input;
     }
 }

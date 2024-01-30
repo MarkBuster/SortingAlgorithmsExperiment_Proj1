@@ -45,7 +45,10 @@ public class QuickSortRandom {
         }
     }
     
-    public void quickSort(int[] input) {
+    public int[] quickSort(int[] input) {
+
         quickSort(input, 0, input.length - 1);
+
+        return input;
     }
 }
