@@ -4,6 +4,11 @@ import java.io.IOException;
 
 public class TimeManager {
 
+    /**
+     * Writes all sorting algorithm times to their own files.
+     *
+     * @param input the array to be used by the sorting algorithms.
+     */
     public void writeAllTimes(int[][][] input) {
 
         // Aaron
@@ -27,6 +32,11 @@ public class TimeManager {
         writeCountingTime(input.clone());
     }
 
+    /**
+     * Writes the first-pivot quick sort time to a file.
+     *
+     * @param input the array to be used.
+     */
     public void writeQuickFirstTime(int[][][] input) {
 
         File timeFile = new File("data/quickFirstTime.txt");
@@ -53,6 +63,11 @@ public class TimeManager {
         }
     }
 
+    /**
+     * Writes the median-pivot quick sort time to a file.
+     *
+     * @param input the array to be used.
+     */
     public void writeQuickMedianTime(int[][][] input) {
 
         File timeFile = new File("data/quickMedianTime.txt");
@@ -79,6 +94,11 @@ public class TimeManager {
         }
     }
 
+    /**
+     * Writes the random-pivot quick sort time to a file.
+     *
+     * @param input the array to be used.
+     */
     public void writeQuickRandomTime(int[][][] input) {
 
         File timeFile = new File("data/quickRandomTime.txt");
@@ -105,6 +125,11 @@ public class TimeManager {
         }
     }
 
+    /**
+     * Writes the merge sort time to a file.
+     *
+     * @param input the array to be used.
+     */
     private void writeMergeTime(int[][][] input) {
 
         File timeFile = new File("data/mergeTime.txt");
@@ -131,6 +156,11 @@ public class TimeManager {
         }
     }
 
+    /**
+     * Writes the insertion sort time to a file.
+     *
+     * @param input the array to be used.
+     */
     private void writeInsertionTime(int[][][] input) {
 
         File timeFile = new File("data/insertionTime.txt");
@@ -157,6 +187,11 @@ public class TimeManager {
         }
     }
 
+    /**
+     * Writes the radix sort time to a file.
+     *
+     * @param input the array to be used.
+     */
     public void writeRadixTime(int[][][] input) {
 
         File timeFile = new File("data/radixTime.txt");
@@ -183,6 +218,11 @@ public class TimeManager {
         }
     }
 
+    /**
+     * Writes the bubble sort time to a file.
+     *
+     * @param input the array to be used.
+     */
     public void writeBubbleTime(int[][][] input) {
 
         File timeFile = new File("data/bubbleTime.txt");
@@ -209,6 +249,11 @@ public class TimeManager {
         }
     }
 
+    /**
+     * Writes the bucket sort time to a file.
+     *
+     * @param input the array to be used.
+     */
     public void writeBucketTime(int[][][] input) {
 
         File timeFile = new File("data/bucketTime.txt");
@@ -235,6 +280,11 @@ public class TimeManager {
         }
     }
 
+    /**
+     * Writes the heap sort time to a file.
+     *
+     * @param input the array to be used.
+     */
     public void writeHeapTime(int[][][] input) {
 
         File timeFile = new File("data/heapTime.txt");
@@ -261,6 +311,11 @@ public class TimeManager {
         }
     }
 
+    /**
+     * Writes the counting sort time to a file.
+     *
+     * @param input the array to be used.
+     */
     public void writeCountingTime(int[][][] input) {
 
         File timeFile = new File("data/countingTime.txt");
@@ -287,6 +342,11 @@ public class TimeManager {
         }
     }
 
+    /**
+     * Writes the shell sort time to a file.
+     *
+     * @param input the array to be used.
+     */
     public void writeShellTime(int[][][] input) {
 
         File timeFile = new File("data/shellTime.txt");
@@ -313,6 +373,11 @@ public class TimeManager {
         }
     }
 
+    /**
+     * Writes the selection sort time to a file.
+     *
+     * @param input the array to be used.
+     */
     public void writeSelectionTime(int[][][] input) {
 
         File timeFile = new File("data/selectionTime.txt");

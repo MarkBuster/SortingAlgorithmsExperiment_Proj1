@@ -7,6 +7,15 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class DataManager {
 
+    /**
+     * Creates a 3-dimensional array to be used by the sorting algorithms.
+     *
+     * @param dataSize the initial size of the arrays(s).
+     * @param sizeMultiplier the change in size per set of arrays.
+     * @param numberOfArrays the number of arrays to be created.
+     * @param inputFile the file to print the array data to (and read from).
+     * @return the 3-dimensional array created.
+     */
     public int[][][] generateData(int dataSize, int sizeMultiplier, int numberOfArrays, File inputFile) {
 
         if (inputFile.isFile() && !inputFile.isDirectory()) {
@@ -47,6 +56,14 @@ public class DataManager {
         return inputData;
     }
 
+    /**
+     * Creates an array of random integers within the range provided.
+     *
+     * @param arraySize the size of the array.
+     * @param minValue the minimum value an element can be (can be negative).
+     * @param maxValue the maximum value an element can be.
+     * @return an array of random integers.
+     */
     public int[] generateArray(int arraySize, int minValue, int maxValue) {
 
         int[] output = new int[arraySize];
@@ -54,10 +71,15 @@ public class DataManager {
         for (int index = 0; index < arraySize; index++) {
             output[index] = ThreadLocalRandom.current().nextInt(minValue, maxValue);
         }
-
         return output;
     }
 
+    /**
+     * Sorts a percentage of an array.
+     *
+     * @param inputData the array to be sorted.
+     * @param percentOrdered the percentage of elements to be sorted.
+     */
     public void partialOrder(int[] inputData, double percentOrdered) {
 
         // Setup length, sorted length, and indexes to use.
@@ -92,6 +114,12 @@ public class DataManager {
         }
     }
 
+    /**
+     * Prints the array data up to the inputted length.
+     *
+     * @param inputData the array to be printed.
+     * @param dataLength the maximum number of elements to be display per array.
+     */
     public void printData(int[][][] inputData, int dataLength) {
 
         int currentDataLength = dataLength;
@@ -122,6 +150,13 @@ public class DataManager {
         }
     }
 
+    /**
+     * Writes the array to a file.
+     *
+     * @param inputData the array to be write with.
+     * @param inputFile the file to be written to.
+     * @throws IOException if file is not found.
+     */
     public void writeDataFile(int[][][] inputData, File inputFile) throws IOException {
 
         FileWriter fileWriter = new FileWriter(inputFile, StandardCharsets.UTF_8);
@@ -139,6 +174,13 @@ public class DataManager {
         fileWriter.close();
     }
 
+    /**
+     * Reads the array from a file.
+     *
+     * @param inputFile the file to read from.
+     * @param numberOfArrays the number of arrays in the file.
+     * @return the array from the file.
+     */
     public int[][][] readFile(File inputFile, int numberOfArrays) {
 
         int[][][] arrayData = new int[numberOfArrays][5][];

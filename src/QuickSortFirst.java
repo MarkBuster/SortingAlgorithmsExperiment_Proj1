@@ -24,6 +24,13 @@ public class QuickSortFirst {
         return right;
     }
 
+    /**
+     * Recursive helper method for quickSort().
+     *
+     * @param input the array to be sorted.
+     * @param start 
+     * @param end
+     */
     private void quickSort(int[] input, int start, int end) {
 
             while (end - start > 0) {
@@ -43,6 +50,12 @@ public class QuickSortFirst {
             }
     }
 
+    /**
+     * Sorts an array using the first element as a pivot.
+     *
+     * @param input the array to be sorted.
+     * @return the sorted array.
+     */
     public int[] quickSort(int[] input) {
 
         quickSort(input, 0, input.length - 1);
