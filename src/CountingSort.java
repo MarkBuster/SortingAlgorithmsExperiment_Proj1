@@ -1,25 +1,33 @@
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collections;
 
+/**
+ * The CountingSort class provides a method for performing counting sort on an ArrayList of integers.
+ */
 public class CountingSort {
 
-    public void countingSort(int[] array) {
-        
-        if (array.length == 0) {
+    /**
+     * Sorts an ArrayList of integers in ascending order using the counting sort algorithm.
+     *
+     * @param arr The ArrayList to be sorted.
+     */
+    public void countingSort(ArrayList<Integer> arr) {
+        if (arr.size() == 0) {
             return;
         }
-        int max = Arrays.stream(array).max().getAsInt();
+        // Find the maximum value in the input ArrayList
+        int max = Collections.max(arr);
+        // Create an array to store counts of each unique element
         int[] count = new int[max + 1];
-        
-        for (int number : array) {
+        // Count occurrences of each element in the input ArrayList
+        for (int number : arr) {
             count[number]++;
         }
-        int arrayIndex = 0;
-        
+        int arrIndex = 0;
+        // Reconstruct the sorted ArrayList based on counts
         for (int i = 0; i < count.length; i++) {
-            
             while (count[i] > 0) {
-                
-                array[arrayIndex++] = i;
+                arr.set(arrIndex++, i);
                 count[i]--;
             }
         }

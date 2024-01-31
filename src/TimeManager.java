@@ -4,12 +4,9 @@ import java.io.IOException;
 
 public class TimeManager {
 
-    /**
-     * Writes all sorting algorithm times to their own files.
-     *
-     * @param input the array to be used by the sorting algorithms.
-     */
     public void writeAllTimes(int[][][] input) {
+
+        // TODO: add methods for timing the other sorting algorithms.
 
         // Aaron
         writeQuickFirstTime(input.clone());
@@ -19,7 +16,7 @@ public class TimeManager {
         // Mark
         writeBubbleTime(input.clone());
         writeBucketTime(input.clone());
-        writeHeapTime(input.clone());
+        //writeHeapTime(input.clone());
 
         // Niki
         writeMergeTime(input.clone());
@@ -27,16 +24,12 @@ public class TimeManager {
         writeRadixTime(input.clone());
 
         // Ken
-        writeSelectionTime(input.clone());
-        writeShellTime(input.clone());
-        writeCountingTime(input.clone());
+        //writeSelectionTime(input.clone());
+        //writeShellTime(input.clone());
+        //writeCountTime(input.clone());
     }
 
-    /**
-     * Writes the first-pivot quick sort time to a file.
-     *
-     * @param input the array to be used.
-     */
+    // TODO: Use this as a template for the other sorting timers!
     public void writeQuickFirstTime(int[][][] input) {
 
         File timeFile = new File("data/quickFirstTime.txt");
@@ -51,9 +44,8 @@ public class TimeManager {
                     long startTime = System.nanoTime();
                     quickSortFirst.quickSort(array);
                     long endTime = System.nanoTime();
-                    double totalTime = (endTime - startTime) / 1000.0;
 
-                    writer.write(totalTime + ",");
+                    writer.write(endTime - startTime + ",");
                 }
                 writer.write("\n");
             }
@@ -63,11 +55,6 @@ public class TimeManager {
         }
     }
 
-    /**
-     * Writes the median-pivot quick sort time to a file.
-     *
-     * @param input the array to be used.
-     */
     public void writeQuickMedianTime(int[][][] input) {
 
         File timeFile = new File("data/quickMedianTime.txt");
@@ -82,9 +69,8 @@ public class TimeManager {
                     long startTime = System.nanoTime();
                     quickSortMedian.quickSort(array);
                     long endTime = System.nanoTime();
-                    double totalTime = (endTime - startTime) / 1000.0;
 
-                    writer.write(totalTime + ",");
+                    writer.write(endTime - startTime + ",");
                 }
                 writer.write("\n");
             }
@@ -94,11 +80,6 @@ public class TimeManager {
         }
     }
 
-    /**
-     * Writes the random-pivot quick sort time to a file.
-     *
-     * @param input the array to be used.
-     */
     public void writeQuickRandomTime(int[][][] input) {
 
         File timeFile = new File("data/quickRandomTime.txt");
@@ -113,9 +94,8 @@ public class TimeManager {
                     long startTime = System.nanoTime();
                     quickSortRandom.quickSort(array);
                     long endTime = System.nanoTime();
-                    double totalTime = (endTime - startTime) / 1000.0;
 
-                    writer.write(totalTime + ",");
+                    writer.write(endTime - startTime + ",");
                 }
                 writer.write("\n");
             }
@@ -125,11 +105,6 @@ public class TimeManager {
         }
     }
 
-    /**
-     * Writes the merge sort time to a file.
-     *
-     * @param input the array to be used.
-     */
     private void writeMergeTime(int[][][] input) {
 
         File timeFile = new File("data/mergeTime.txt");
@@ -144,9 +119,8 @@ public class TimeManager {
                     long startTime = System.nanoTime();
                     mergeSort.mergeSort(array);
                     long endTime = System.nanoTime();
-                    double totalTime = (endTime - startTime) / 1000.0;
 
-                    writer.write(totalTime + ",");
+                    writer.write(endTime - startTime + ",");
                 }
                 writer.write("\n");
             }
@@ -156,11 +130,6 @@ public class TimeManager {
         }
     }
 
-    /**
-     * Writes the insertion sort time to a file.
-     *
-     * @param input the array to be used.
-     */
     private void writeInsertionTime(int[][][] input) {
 
         File timeFile = new File("data/insertionTime.txt");
@@ -175,9 +144,8 @@ public class TimeManager {
                     long startTime = System.nanoTime();
                     insertionSort.insertionSort(array);
                     long endTime = System.nanoTime();
-                    double totalTime = (endTime - startTime) / 1000.0;
 
-                    writer.write(totalTime + ",");
+                    writer.write(endTime - startTime + ",");
                 }
                 writer.write("\n");
             }
@@ -187,11 +155,6 @@ public class TimeManager {
         }
     }
 
-    /**
-     * Writes the radix sort time to a file.
-     *
-     * @param input the array to be used.
-     */
     public void writeRadixTime(int[][][] input) {
 
         File timeFile = new File("data/radixTime.txt");
@@ -206,9 +169,8 @@ public class TimeManager {
                     long startTime = System.nanoTime();
                     radixSort.radixSort(array);
                     long endTime = System.nanoTime();
-                    double totalTime = (endTime - startTime) / 1000.0;
 
-                    writer.write(totalTime + ",");
+                    writer.write(endTime - startTime + ",");
                 }
                 writer.write("\n");
             }
@@ -218,11 +180,6 @@ public class TimeManager {
         }
     }
 
-    /**
-     * Writes the bubble sort time to a file.
-     *
-     * @param input the array to be used.
-     */
     public void writeBubbleTime(int[][][] input) {
 
         File timeFile = new File("data/bubbleTime.txt");
@@ -237,9 +194,8 @@ public class TimeManager {
                     long startTime = System.nanoTime();
                     bubbleSort.bubbleSort(array);
                     long endTime = System.nanoTime();
-                    double totalTime = (endTime - startTime) / 1000.0;
 
-                    writer.write(totalTime + ",");
+                    writer.write(endTime - startTime + ",");
                 }
                 writer.write("\n");
             }
@@ -249,11 +205,6 @@ public class TimeManager {
         }
     }
 
-    /**
-     * Writes the bucket sort time to a file.
-     *
-     * @param input the array to be used.
-     */
     public void writeBucketTime(int[][][] input) {
 
         File timeFile = new File("data/bucketTime.txt");
@@ -268,133 +219,8 @@ public class TimeManager {
                     long startTime = System.nanoTime();
                     bucketSort.bucketSort(array);
                     long endTime = System.nanoTime();
-                    double totalTime = (endTime - startTime) / 1000.0;
 
-                    writer.write(totalTime + ",");
-                }
-                writer.write("\n");
-            }
-        } catch (IOException ioException) {
-
-            throw new RuntimeException(ioException);
-        }
-    }
-
-    /**
-     * Writes the heap sort time to a file.
-     *
-     * @param input the array to be used.
-     */
-    public void writeHeapTime(int[][][] input) {
-
-        File timeFile = new File("data/heapTime.txt");
-        HeapSort heapSort = new HeapSort();
-
-        try (FileWriter writer = new FileWriter(timeFile)) {
-
-            for (int[][] arrays : input) {
-
-                for (int[] array : arrays) {
-
-                    long startTime = System.nanoTime();
-                    heapSort.heapSort(array);
-                    long endTime = System.nanoTime();
-                    double totalTime = (endTime - startTime) / 1000.0;
-
-                    writer.write(totalTime + ",");
-                }
-                writer.write("\n");
-            }
-        } catch (IOException ioException) {
-
-            throw new RuntimeException(ioException);
-        }
-    }
-
-    /**
-     * Writes the counting sort time to a file.
-     *
-     * @param input the array to be used.
-     */
-    public void writeCountingTime(int[][][] input) {
-
-        File timeFile = new File("data/countingTime.txt");
-        CountingSort countingSort = new CountingSort();
-
-        try (FileWriter writer = new FileWriter(timeFile)) {
-
-            for (int[][] arrays : input) {
-
-                for (int[] array : arrays) {
-
-                    long startTime = System.nanoTime();
-                    countingSort.countingSort(array);
-                    long endTime = System.nanoTime();
-                    double totalTime = (endTime - startTime) / 1000.0;
-
-                    writer.write(totalTime + ",");
-                }
-                writer.write("\n");
-            }
-        } catch (IOException ioException) {
-
-            throw new RuntimeException(ioException);
-        }
-    }
-
-    /**
-     * Writes the shell sort time to a file.
-     *
-     * @param input the array to be used.
-     */
-    public void writeShellTime(int[][][] input) {
-
-        File timeFile = new File("data/shellTime.txt");
-        ShellSort shellSort = new ShellSort();
-
-        try (FileWriter writer = new FileWriter(timeFile)) {
-
-            for (int[][] arrays : input) {
-
-                for (int[] array : arrays) {
-
-                    long startTime = System.nanoTime();
-                    shellSort.shellSort(array);
-                    long endTime = System.nanoTime();
-                    double totalTime = (endTime - startTime) / 1000.0;
-
-                    writer.write(totalTime + ",");
-                }
-                writer.write("\n");
-            }
-        } catch (IOException ioException) {
-
-            throw new RuntimeException(ioException);
-        }
-    }
-
-    /**
-     * Writes the selection sort time to a file.
-     *
-     * @param input the array to be used.
-     */
-    public void writeSelectionTime(int[][][] input) {
-
-        File timeFile = new File("data/selectionTime.txt");
-        SelectionSort selectionSort = new SelectionSort();
-
-        try (FileWriter writer = new FileWriter(timeFile)) {
-
-            for (int[][] arrays : input) {
-
-                for (int[] array : arrays) {
-
-                    long startTime = System.nanoTime();
-                    selectionSort.selectionSort(array);
-                    long endTime = System.nanoTime();
-                    double totalTime = (endTime - startTime) / 1000.0;
-
-                    writer.write(totalTime + ",");
+                    writer.write(endTime - startTime + ",");
                 }
                 writer.write("\n");
             }
