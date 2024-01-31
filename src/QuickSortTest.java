@@ -13,6 +13,9 @@ public class QuickSortTest {
     int[] sortedData2 = data[1][2].clone();
     int[] sortedData3 = data[2][2].clone();
 
+    /**
+     * Tests whether the quick sort with a first element pivot sorts as expected.
+     */
     @Test
     void quickSortFirstTest() {
 
@@ -25,6 +28,9 @@ public class QuickSortTest {
         assertArrayEquals(sortedData1, quickSortFirst.quickSort(data[0][4]));
     }
 
+    /**
+     * Tests whether the quick sort with a median element pivot sorts as expected.
+     */
     @Test
     void quickSortMedianTest() {
 
@@ -37,6 +43,9 @@ public class QuickSortTest {
         assertArrayEquals(sortedData2, quickSortMedian.quickSort(data[1][4]));
     }
 
+    /**
+     * Tests whether the quick sort with a random element pivot sorts as expected.
+     */
     @Test
     void quickSortRandomTest() {
 
